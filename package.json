@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "gulplearning",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Alexandr",
   "license": "ISC",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build"
+  },
   "devDependencies": {
     "gulp": "^4.0.2"
   }
