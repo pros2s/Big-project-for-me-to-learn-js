@@ -16,6 +16,7 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/register": "^7.16.0",
+    "del": "^6.0.0",
     "gulp-pug": "^5.0.0"
   }
 }
