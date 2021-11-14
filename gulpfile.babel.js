@@ -7,6 +7,7 @@ import autoPref from "gulp-autoprefixer";
 import miniCss from "gulp-csso";
 import bro from "gulp-bro";
 import babelify from "babelify";
+import concat from "gulp-concat";
 
 const sass = require('gulp-sass')(require('sass'));
 
@@ -17,7 +18,7 @@ const routes = {
     dest: 'build'
   },
   img: {
-    src: "src/img/*",
+    src: "src/img/**/*",
     dest: "build/img"
   },
   scss: {
@@ -27,7 +28,7 @@ const routes = {
   },
   js: {
     watch: 'src/js/**/*.js',
-    src: 'src/js/main.js',
+    src: 'src/js/*.js',
     dest: 'build/js'
   }
 };
@@ -54,6 +55,7 @@ const js = () =>
   .pipe(bro({
     transform: [babelify.configure({ presets: ['@babel/preset-env'] })]
   }))
+  .pipe(concat('app.js'))
   .pipe(gulp.dest(routes.js.dest));
 
 //Watch

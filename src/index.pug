@@ -1,5 +1,205 @@
 extends templates/layout
 
 block content
-  img(src="img/logo.svg")
-  h1 Gulp облегчает верстку
+  .sidepanel
+    .sidepanel__text
+      span Социальные сети
+    .sidepanel__divider
+    a.sidepanel__icon(href='#')
+      img(src='img/icons/instagram.svg' alt='instagram')
+    a.sidepanel__icon(href='#')
+      img(src='img/icons/facebook.svg' alt='facebook')
+  .preview
+    .bgc_blue
+    .container
+      .tabcontainer
+        .tabcontent
+          img(src='img/tabs/vegy.jpg' alt='vegy')
+          .tabcontent__descr
+            | Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Для людей, которые интересуются спортом; активных и здоровых. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!
+        .tabcontent
+          img(src='img/tabs/elite.jpg' alt='elite')
+          .tabcontent__descr
+            | Меню “Премиум” - мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!
+        .tabcontent
+          img(src='img/tabs/post.jpg' alt='post')
+          .tabcontent__descr
+            | Наше специальное “Постное меню” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения. Полная гармония с собой и природой в каждом элементе! Все будет Ом!
+        .tabcontent
+          img(src='img/tabs/vegy.jpg' alt='vegy')
+          .tabcontent__descr
+            | Меню "Сбалансированное" - это соответствие вашего рациона всем научным рекомендациям. Мы тщательно просчитываем вашу потребность в к/б/ж/у и создаем лучшие блюда для вас.
+        .tabheader
+          h3 Выберите стиль питания
+          .tabheader__items
+            .tabheader__item.tabheader__item_active Фитнес
+            .tabheader__item Премиум
+            .tabheader__item Постное
+            .tabheader__item Сбалансированное
+      .preview__life Живи полной жизнью!
+  .divider
+  .offer
+    .bgc_y
+    .container
+      .offer__text
+        h2.title Что мы можем вам предложить?
+        .offer__descr
+          | Наша основная идея - это правильное питание. Оно может быть простым и вкусным. Мы не просто доставка, мы сервис! Мы взяли на себя все расчеты БЖУ, калорийности, объемов порций и прочие важные, но скучные аспекты. Вам остается только полезная, сытная и правильная еда, которую мы привозим прямо под дверь.
+      .offer__action
+        button.btn.btn_dark(data-modal='') Связаться с нами
+    .container
+      .offer__advantages
+        h2 Быстро и полезно
+        .offer__advantages-text
+          | Готовка дома занимает много сил, времени и нервов. Мы привозим еду сразу на целый день, и ты можешь действовать так, как тебе удобно, не подстраиваясь ни под кого и будучи уверенным в качестве продукта!
+        h2 Правильный рацион
+        .offer__advantages-text
+          | Мы разработали специальное меню, где учтены все нюансы правильного питания, от баланса БЖУ до их приготовления и дробления рациона.
+      .offer__slider
+        .offer__slider-counter
+          .offer__slider-prev
+            img(src='img/icons/left.svg' alt='prev')
+          span#current 03
+          |                 /
+          span#total 04
+          .offer__slider-next
+            img(src='img/icons/right.svg' alt='next')
+        .offer__slider-wrapper
+          .offer__slide
+            img(src='img/slider/pepper.jpg' alt='pepper')
+          //
+            <div class="offer__slide">
+            <img src="img/slider/food-12.jpg" alt="food">
+            </div>
+            <div class="offer__slide">
+            <img src="img/slider/olive-oil.jpg" alt="oil">
+            </div>
+            <div class="offer__slide">
+            <img src="img/slider/paprika.jpg" alt="paprika">
+            </div>
+  .divider
+  .calculating
+    .container
+      h2.title
+        | Рассчитаем вашу потребность в калориях?
+      .calculating__field
+        .calculating__subtitle
+          | Ваш пол
+        #gender.calculating__choose
+          .calculating__choose-item.calculating__choose-item_active Женщина
+          .calculating__choose-item Мужчина
+        .calculating__subtitle
+          | Ваша конституция
+        .calculating__choose.calculating__choose_medium
+          input#height.calculating__choose-item(type='text' placeholder='Введите рост')
+          input#weight.calculating__choose-item(type='text' placeholder='Введите вес')
+          input#age.calculating__choose-item(type='text' placeholder='Введите возраст')
+        .calculating__subtitle
+          | Выберите вашу физическая активность
+        .calculating__choose.calculating__choose_big
+          #low.calculating__choose-item Низкая активность
+          #small.calculating__choose-item.calculating__choose-item_active Невысокая активность
+          #medium.calculating__choose-item Умеренная активность
+          #high.calculating__choose-item Высокая активность
+        .calculating__divider
+        .calculating__total
+          .calculating__subtitle
+            | Ваша суточная норма калорий:
+          .calculating__result
+            span 2700
+            |  ккал
+  .divider
+  .menu
+    h2.title Наше меню на день
+    .menu__field
+      .container
+        .menu__item
+          img(src='img/tabs/vegy.jpg' alt='vegy')
+          h3.menu__item-subtitle Меню "Фитнес"
+          .menu__item-descr
+            | Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!
+          .menu__item-divider
+          .menu__item-price
+            .menu__item-cost Цена:
+            .menu__item-total
+              span 229
+              |  грн/день
+        .menu__item
+          img(src='img/tabs/elite.jpg' alt='elite')
+          h3.menu__item-subtitle Меню “Премиум”
+          .menu__item-descr
+            | В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!
+          .menu__item-divider
+          .menu__item-price
+            .menu__item-cost Цена:
+            .menu__item-total
+              span 550
+              |  грн/день
+        .menu__item
+          img(src='img/tabs/post.jpg' alt='post')
+          h3.menu__item-subtitle Меню "Постное"
+          .menu__item-descr
+            | Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.
+          .menu__item-divider
+          .menu__item-price
+            .menu__item-cost Цена:
+            .menu__item-total
+              span 430
+              |  грн/день
+  .order
+    .container
+      .title Заказывай пробный день прямо сейчас!
+      form.order__form(action='#')
+        input.order__input(required='' placeholder='Ваше имя' name='name' type='text')
+        input.order__input(required='' placeholder='Ваш номер телефона' name='phone' type='phone')
+        img(src='img/icons/right.svg' alt='right')
+        button.btn.btn_dark.btn_min Перезвонить мне
+  .divider
+  .promotion
+    .bgc_y
+    .container
+      .promotion__text
+        .title Акция для новых клиентов!
+        .promotion__descr
+          | Мы ценим каждого клиента и предлагаем вам стать одним из них на очень выгодных условиях.
+          | Каждому, кто закажет доставку питание на неделю, будет предоставлена скидка в размере
+          span 20%!
+          br
+          br
+          |                 Акция закончится 20 мая в 00:00
+      .promotion__timer
+        .title Осталось до конца акции:
+        .timer
+          .timer__block
+            span#days 12
+            |                     дней
+          .timer__block
+            span#hours 20
+            |                     часов
+          .timer__block
+            span#minutes 56
+            |                     минут
+          .timer__block
+            span#seconds 20
+            |                     секунд
+  footer.footer
+    .container
+      .social
+        .subtitle Мы в социальных сетях:
+        a.link(href='#') instagram
+        a.link(href='#') facebook
+      .pepper
+        img(src='img/icons/veg.svg' alt='pepper')
+      .call
+        .subtitle Или позвоните нам
+        a.link(href='#') +380678341034
+        a.link(href='#') +380500941356
+  .modal
+    .modal__dialog
+      .modal__content
+        form(action='#')
+          .modal__close(data-close='') ×
+          .modal__title Мы свяжемся с вами как можно быстрее!
+          input.modal__input(required='' placeholder='Ваше имя' name='name' type='text')
+          input.modal__input(required='' placeholder='Ваш номер телефона' name='phone' type='phone')
+          button.btn.btn_dark.btn_min Перезвонить мне
