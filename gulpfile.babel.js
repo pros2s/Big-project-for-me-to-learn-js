@@ -9,8 +9,13 @@ const routes = {
   }
 };
 
-const pug = () => gulp.src(routes.pug.src).pipe(gPug()).pipe(gulp.dest(routes.pug.dest));
-const clean = () => del(["build"]);
+const pug = () =>
+  gulp.src(routes.pug.src)
+  .pipe(gPug())
+  .pipe(gulp.dest(routes.pug.dest));
+
+const clean = () =>
+  del(["build"]);
 
 const prepare = gulp.series([clean]);
 const assets = gulp.series([pug]);
