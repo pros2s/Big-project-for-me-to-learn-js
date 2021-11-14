@@ -17,8 +17,11 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/register": "^7.16.0",
     "del": "^6.0.0",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-image": "^6.2.1",
     "gulp-pug": "^5.0.0",
-    "gulp-webserver": "^0.9.1"
+    "gulp-sass": "^5.0.0",
+    "gulp-webserver": "^0.9.1",
+    "sass": "^1.43.4"
   }
 }
