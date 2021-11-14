@@ -3,6 +3,8 @@ import gPug from "gulp-pug";
 import del from "del";
 import wServer from "gulp-webserver";
 import image from "gulp-image";
+import autoPref from "gulp-autoprefixer";
+import miniCss from "gulp-csso";
 
 const sass = require('gulp-sass')(require('sass'));
 
@@ -33,6 +35,10 @@ const pug = () =>
 const styles = () =>
   gulp.src(routes.scss.src)
   .pipe(sass().on('error', sass.logError))
+  .pipe(autoPref({
+    browsers: ['last 2 versions']
+  }))
+  .pipe(miniCss())
   .pipe(gulp.dest(routes.scss.dest));
 
 //Watch
