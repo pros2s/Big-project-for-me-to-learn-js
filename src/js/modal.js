@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', function() {
       form.append(statusMessage);
 
       const request = new XMLHttpRequest();
-      request.open('POST', 'server.php');
+      request.open('POST', 'php/server.php');
 
       // request.setRequestHeader('Content-type', 'multipart/form-data');
       const formData = new FormData(form);

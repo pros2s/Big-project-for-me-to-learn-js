@@ -8,8 +8,10 @@ import miniCss from "gulp-csso";
 import bro from "gulp-bro";
 import babelify from "babelify";
 import concat from "gulp-concat";
+import bsync from "browser-sync";
 
 const sass = require('gulp-sass')(require('sass'));
+bsync.create();
 
 const routes = {
   pug: {
@@ -30,14 +32,27 @@ const routes = {
     watch: 'src/js/**/*.js',
     src: 'src/js/*.js',
     dest: 'build/js'
+  },
+  php: {
+    watch: 'src/**/*.php',
+    src: 'src/server.php',
+    dest: 'build/php'
   }
+};
+
+//Browser reload
+const sync = () => {
+  bsync.init({
+    proxy: "gulpFood.dev"
+  });
 };
 
 //PUG
 const pug = () =>
   gulp.src(routes.pug.src)
   .pipe(gPug())
-  .pipe(gulp.dest(routes.pug.dest));
+  .pipe(gulp.dest(routes.pug.dest))
+  .pipe(bsync.reload({stream: true}));
 
 //SCSS
 const styles = () =>
@@ -47,7 +62,8 @@ const styles = () =>
     browsers: ['last 2 versions']
   }))
   .pipe(miniCss())
-  .pipe(gulp.dest(routes.scss.dest));
+  .pipe(gulp.dest(routes.scss.dest))
+  .pipe(bsync.reload({stream: true}));
 
 //JS
 const js = () =>
@@ -56,7 +72,14 @@ const js = () =>
     transform: [babelify.configure({ presets: ['@babel/preset-env'] })]
   }))
   .pipe(concat('app.js'))
-  .pipe(gulp.dest(routes.js.dest));
+  .pipe(gulp.dest(routes.js.dest))
+  .pipe(bsync.reload({stream: true}));
+
+//PHP
+const php = () =>
+  gulp.src(routes.php.src)
+  .pipe(gulp.dest(routes.php.dest))
+  .pipe(bsync.reload({stream: true}));
 
 //Watch
 const watch = () => {
@@ -64,20 +87,12 @@ const watch = () => {
   gulp.watch(routes.img.src, img);
   gulp.watch(routes.scss.watch, styles);
   gulp.watch(routes.js.watch, js);
+  gulp.watch(routes.php.watch, php);
 };
 
 //Clean
 const clean = () =>
   del(["build"]);
-
-//LifeReload
-const ws = () =>
-  gulp.src('build')
-  .pipe(wServer({
-    port: 7355,
-    livereload: true,
-    open: true
-  }));
 
 //Images
 const img = () =>
@@ -86,7 +101,7 @@ const img = () =>
   .pipe(gulp.dest(routes.img.dest));
 
 const prepare = gulp.series([clean, img]);
-const assets = gulp.series([pug, styles, js]);
-const postDev = gulp.parallel([ws, watch]);
+const assets = gulp.series([pug, styles, js, php]);
+const postDev = gulp.parallel([sync, watch]);
 
 export const dev = gulp.series([prepare, assets, postDev]);
