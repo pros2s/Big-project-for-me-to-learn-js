@@ -101,7 +101,9 @@ const img = () =>
   .pipe(gulp.dest(routes.img.dest));
 
 const prepare = gulp.series([clean, img]);
-const assets = gulp.series([pug, styles, js, php]);
-const postDev = gulp.parallel([sync, watch]);
+const assets = gulp.parallel([pug, styles, js, php]);
 
-export const dev = gulp.series([prepare, assets, postDev]);
+const build = gulp.series(prepare, assets);
+const ggulp = gulp.parallel(build, sync, watch);
+
+exports.default = ggulp;
