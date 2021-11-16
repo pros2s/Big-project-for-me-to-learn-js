@@ -1,7 +1,6 @@
 import gulp from "gulp";
 import gPug from "gulp-pug";
 import del from "del";
-import wServer from "gulp-webserver";
 import image from "gulp-image";
 import autoPref from "gulp-autoprefixer";
 import miniCss from "gulp-csso";
@@ -9,6 +8,7 @@ import bro from "gulp-bro";
 import babelify from "babelify";
 import concat from "gulp-concat";
 import bsync from "browser-sync";
+import uglify from "gulp-uglify";
 
 const sass = require('gulp-sass')(require('sass'));
 bsync.create();
@@ -71,6 +71,7 @@ const js = () =>
   .pipe(bro({
     transform: [babelify.configure({ presets: ['@babel/preset-env'] })]
   }))
+  .pipe(uglify())
   .pipe(concat('app.js'))
   .pipe(gulp.dest(routes.js.dest))
   .pipe(bsync.reload({stream: true}));

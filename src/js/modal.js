@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
   function postData(form) {
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', event => {
       event.preventDefault();
 
       let statusMessage = document.createElement('div');
