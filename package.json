@@ -28,6 +28,7 @@
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-webserver": "^0.9.1",
+    "gulp-wrapper": "^1.0.0",
     "sass": "^1.43.4"
   }
 }

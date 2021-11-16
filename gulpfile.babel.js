@@ -9,6 +9,7 @@ import babelify from "babelify";
 import concat from "gulp-concat";
 import bsync from "browser-sync";
 import uglify from "gulp-uglify";
+import wrapper from "gulp-wrapper";
 
 const sass = require('gulp-sass')(require('sass'));
 bsync.create();
@@ -73,6 +74,9 @@ const js = () =>
   }))
   .pipe(uglify())
   .pipe(concat('app.js'))
+  .pipe(wrapper({
+    header: '"use strict";\n'
+  }))
   .pipe(gulp.dest(routes.js.dest))
   .pipe(bsync.reload({stream: true}));
 
