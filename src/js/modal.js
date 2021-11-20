@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //List of stages' messages
   const message = {
-    loading: 'loading',
+    loading: 'img/spinner.svg',
     succes: 'thanks, everything is good',
     failure: 'Error'
   };
@@ -60,10 +60,18 @@ window.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
 
       //Create visuality of textmessages
-      const statusMessage = document.createElement('div');
-      statusMessage.classList.add('status');
-      statusMessage.textContent = message.loading;
-      form.append(statusMessage);
+      const statusMessage = document.createElement('img');
+      statusMessage.src = message.loading;
+      statusMessage.style.cssText = `
+        display: block;
+        margin: 20px auto 0;
+
+        fill: transparent;
+        height: 20px;
+        width: 20px;
+      `;
+
+      form.insertAdjacentElement('afterend', statusMessage);
 
       //Create new object XMLHttpRequest()
       const request = new XMLHttpRequest();
@@ -104,6 +112,7 @@ window.addEventListener('DOMContentLoaded', function() {
   function showThanksModal (message) {
     const prevModalDialog = document.querySelector('.modal__dialog');
 
+    prevModalDialog.classList.remove('show');
     prevModalDialog.classList.add('hide');
     openModal();
 
@@ -122,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function() {
       prevModalDialog.classList.add('show');
       prevModalDialog.classList.remove('hide');
       closeModal();
-    }, 4000);
+    }, 1500);
   }
 
   //Do postData() for each form
