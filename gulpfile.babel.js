@@ -38,6 +38,11 @@ const routes = {
     watch: 'src/**/*.php',
     src: 'src/server.php',
     dest: 'build/php'
+  },
+  json: {
+    watch: 'src/**/*.json',
+    src: 'src/db.json',
+    dest: 'build'
   }
 };
 
@@ -86,6 +91,12 @@ const php = () =>
   .pipe(gulp.dest(routes.php.dest))
   .pipe(bsync.reload({stream: true}));
 
+//JSON
+const json = () =>
+  gulp.src(routes.json.src)
+  .pipe(gulp.dest(routes.json.dest))
+  .pipe(bsync.reload({stream: true}));
+
 //Watch
 const watch = () => {
   gulp.watch(routes.pug.watch, pug);
@@ -93,6 +104,7 @@ const watch = () => {
   gulp.watch(routes.scss.watch, styles);
   gulp.watch(routes.js.watch, js);
   gulp.watch(routes.php.watch, php);
+  gulp.watch(routes.json.watch, json);
 };
 
 //Clean
@@ -106,7 +118,7 @@ const img = () =>
   .pipe(gulp.dest(routes.img.dest));
 
 const prepare = gulp.series([clean, img]);
-const assets = gulp.parallel([pug, styles, js, php]);
+const assets = gulp.parallel([pug, styles, js, php, json]);
 
 const build = gulp.series(prepare, assets);
 const ggulp = gulp.parallel(build, sync, watch);
