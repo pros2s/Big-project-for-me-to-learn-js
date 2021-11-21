@@ -95,9 +95,9 @@ window.addEventListener('DOMContentLoaded', function() {
       //Create fetch API
       fetch('php/server.php', {
         method: 'POST',
-        headers: {
-          'Content-type': 'multipart/form-data'
-        },
+        // headers: {
+        //   'Content-type': 'multipart/form-data'
+        // },
         body: JSON.stringify(object)
       })
       .then(data => data.text())
@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', function() {
     `;
 
     document.querySelector('.modal').append(thanksModal);
-    
+
     setTimeout(() => {
       thanksModal.remove();
       prevModalDialog.classList.add('show');
