@@ -74,37 +74,43 @@ window.addEventListener('DOMContentLoaded', function() {
       form.insertAdjacentElement('afterend', statusMessage);
 
       //Create new object XMLHttpRequest()
-      const request = new XMLHttpRequest();
-      request.open('POST', 'php/server.php');
+      //
+      // const request = new XMLHttpRequest();
+      // request.open('POST', 'php/server.php');
 
       ///////////////////////////////////////////////////////////////////
       // doesn't work with FormData()
       // request.setRequestHeader('Content-type', 'multipart/form-data');
       ///////////////////////////////////////////////////////////////////
 
-      //Formdata of object
+      //Formdata for object
       const formData = new FormData(form);
 
-      //Data in json format
+      //Data in json format for each form(forEach)
       const object = {};
       formData.forEach((value, key) => {
         object[key] = value;
       });
 
-      const json = JSON.stringify(object);
-      request.send(json /*or formData*/);
-
-      //Output response and message on 'load'
-      request.addEventListener('load', () => {
-        if (request.status === 200) {
-          console.log(request.response);
-          showThanksModal(message.succes);
-          form.reset();
-          statusMessage.remove();
-        }
-        else {
-          showThanksModal(message.failure);
-        }
+      //Create fetch API
+      fetch('php/server.php', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'multipart/form-data'
+        },
+        body: JSON.stringify(object)
+      })
+      .then(data => data.text())
+      .then(data => {
+        console.log(data);
+        showThanksModal(message.succes);
+        statusMessage.remove();
+      })
+      .catch(() => {
+        showThanksModal(message.failure);
+      })
+      .finally(() => {
+        form.reset();
       });
     });
   };
@@ -126,6 +132,7 @@ window.addEventListener('DOMContentLoaded', function() {
     `;
 
     document.querySelector('.modal').append(thanksModal);
+    
     setTimeout(() => {
       thanksModal.remove();
       prevModalDialog.classList.add('show');
