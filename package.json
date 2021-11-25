@@ -10,14 +10,16 @@
     "build": "gulp build"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "json-server": "^0.17.0",
     "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-async-to-generator": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.0",
     "@babel/register": "^7.16.0",
+    "babel-preset-minify": "^0.5.1",
     "babelify": "^10.0.0",
     "browser-sync": "^2.27.7",
     "del": "^6.0.0",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-bro": "^2.0.0",
     "gulp-concat": "^2.6.1",
@@ -28,6 +30,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-webserver": "^0.9.1",
     "gulp-wrapper": "^1.0.0",
+    "json-server": "^0.17.0",
     "sass": "^1.43.4"
   }
 }
