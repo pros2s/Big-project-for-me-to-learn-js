@@ -81,6 +81,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }, 1500);
   }
 
+  //Function to post some data with fetch
   const postData = async (url, data) => {
     const res = await fetch(url, {
       method: 'POST',
@@ -124,6 +125,8 @@ window.addEventListener('DOMContentLoaded', function() {
       //Formdata for object
       const formData = new FormData(form);
 
+      const jsonFormData = JSON.stringify(Object.fromEntries(formData.entries()));
+
       //Data in json format for each form(forEach)
       const object = {};
       formData.forEach((value, key) => {
@@ -138,7 +141,7 @@ window.addEventListener('DOMContentLoaded', function() {
       //   // },
       //   body: JSON.stringify(object)
       // })
-      postData('http://localhost:3000/requests', JSON.stringify(object))
+      postData('http://localhost:3000/requests', jsonFormData)
       // .then(data => data.text())
       .then((/*data*/) => {
         // console.log(data);
