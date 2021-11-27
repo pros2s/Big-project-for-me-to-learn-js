@@ -74,9 +74,6 @@ const styles = () =>
 //JS
 const js = () =>
   gulp.src(routes.js.src)
-  .pipe(bro({
-    transform: [babelify.configure({ presets: ['@babel/preset-env'] })]
-  }))
   .pipe(uglify())
   .pipe(concat('app.js'))
   .pipe(wrapper({
