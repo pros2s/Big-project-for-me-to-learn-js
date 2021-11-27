@@ -22,7 +22,8 @@ window.addEventListener('DOMContentLoaded', function() {
         activeDots = (arr, i) => {
           arr.forEach(dot => dot.style.opacity = '.5');
           arr[i - 1].style.opacity = '1';
-        };
+        },
+        deleteNotDigits = key => +key.replace(/\D/ig, '');
 
 
 
@@ -98,12 +99,12 @@ window.addEventListener('DOMContentLoaded', function() {
   //Event on next arrow
   nextSlide.addEventListener('click', () => {
     //At the end of slider
-    if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+    if (offset == deleteNotDigits(width) * (slides.length - 1)) {
       offset = 0;
     }
     else {
       //Movement of slide
-      offset += +width.slice(0, width.length - 2);
+      offset += deleteNotDigits(width);
     }
 
     slidesField.style.transform = `translateX(-${offset}px)`;
@@ -126,11 +127,11 @@ window.addEventListener('DOMContentLoaded', function() {
   prevSlide.addEventListener('click', () => {
     //At the start of slider
     if (offset == 0) {
-      offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+      offset = deleteNotDigits(width) * (slides.length - 1);
     }
     else {
       //Movement of slide
-      offset -= +width.slice(0, width.length - 2);
+      offset -= deleteNotDigits(width);
     }
 
     slidesField.style.transform = `translateX(-${offset}px)`;
@@ -154,7 +155,7 @@ window.addEventListener('DOMContentLoaded', function() {
       const slideTo = e.target.getAttribute('data-slide-to');
 
       slideIndex = slideTo;
-      offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+      offset = deleteNotDigits(width) * (slideTo - 1);
 
       slidesField.style.transform = `translateX(-${offset}px)`;
 
