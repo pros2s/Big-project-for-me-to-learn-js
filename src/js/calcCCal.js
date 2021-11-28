@@ -1,7 +1,8 @@
 window.addEventListener('DOMContentLoaded', function() {
-  const result = document.querySelector('.calculating__result span');
+  const result = document.querySelector('.calculating__result span');//Result placement
   let sex, height, weight, age, ratio;
 
+  //Set default value of sex depending on localStorage
   if (localStorage.getItem('sex')) {
     sex = localStorage.getItem('sex');
   }
@@ -10,6 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('sex', 'female');
   }
 
+  //Set default value of ratio depending on localStorage
   if (localStorage.getItem('ratio')) {
     ratio = localStorage.getItem('ratio');
   }
@@ -17,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function() {
     ratio = 1.375;
     localStorage.setItem('ratio', 1.375);
   }
-
+        //Calculate function
   const calcTotal = () => {
         if (!sex || !height || !weight || !age || !ratio) {
           result.textContent = '____';
@@ -31,34 +33,40 @@ window.addEventListener('DOMContentLoaded', function() {
           result.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
         }
       },
+      //Set values and calculate ccal on click function
       getStaticInformation = (selector, activeClass) => {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach(elem => {
           elem.addEventListener('click', e => {
 
+            //if element has data-ratio
             if (e.target.getAttribute('data-ratio')) {
               ratio = +e.target.getAttribute('data-ratio');
-              localStorage.setItem('ratio', ratio);
+              localStorage.setItem('ratio', ratio);//set localStorage data
           }
+            //if element has id(male or female)
             else {
               sex = e.target.getAttribute('id');
-              localStorage.setItem('sex', sex);
+              localStorage.setItem('sex', sex);//set localStorage data
           }
 
+            //Set activeClass
             elements.forEach(elem => elem.classList.remove(activeClass));
-
             e.target.classList.add(activeClass);
 
+            //Calculate on 'click'
             calcTotal();
           });
         });
       },
+      //Set values and calculate ccal on 'input' function
       getDynamicInformation = (selector) => {
         const input = document.querySelector(selector);
 
         input.addEventListener('input', () => {
 
+          //Red border if inside is not digits(regular extantion)
           if (input.value.match(/\D/g)) {
             input.style.border = '1px solid red';
           }
@@ -81,6 +89,7 @@ window.addEventListener('DOMContentLoaded', function() {
           calcTotal();
         });
       },
+      //Set activeClass depending on localStorage data
       initLocalSettings = (selector, activeClass) => {
         const elements = document.querySelectorAll(selector);
 
@@ -98,6 +107,7 @@ window.addEventListener('DOMContentLoaded', function() {
       };
 
   calcTotal();
+  
   initLocalSettings('#gender div', 'calculating__choose-item_active');
   initLocalSettings('.calculating__choose.calculating__choose_big div', 'calculating__choose-item_active');
 
