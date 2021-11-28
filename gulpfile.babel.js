@@ -4,8 +4,6 @@ import del from "del";
 import image from "gulp-image";
 import autoPref from "gulp-autoprefixer";
 import miniCss from "gulp-csso";
-import bro from "gulp-bro";
-import babelify from "babelify";
 import concat from "gulp-concat";
 import bsync from "browser-sync";
 import uglify from "gulp-uglify";
