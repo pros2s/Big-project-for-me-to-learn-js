@@ -83,8 +83,8 @@ block content
         .calculating__subtitle
           | Ваш пол
         #gender.calculating__choose
-          .calculating__choose-item.calculating__choose-item_active Женщина
-          .calculating__choose-item Мужчина
+          .calculating__choose-item.calculating__choose-item_active#female Женщина
+          .calculating__choose-item#male Мужчина
         .calculating__subtitle
           | Ваша конституция
         .calculating__choose.calculating__choose_medium
@@ -94,10 +94,10 @@ block content
         .calculating__subtitle
           | Выберите вашу физическая активность
         .calculating__choose.calculating__choose_big
-          #low.calculating__choose-item Низкая активность
-          #small.calculating__choose-item.calculating__choose-item_active Невысокая активность
-          #medium.calculating__choose-item Умеренная активность
-          #high.calculating__choose-item Высокая активность
+          #low.calculating__choose-item(data-ratio="1.2") Низкая активность
+          #small.calculating__choose-item.calculating__choose-item_active(data-ratio="1.375") Невысокая активность
+          #medium.calculating__choose-item(data-ratio="1.55") Умеренная активность
+          #high.calculating__choose-item(data-ratio="1.725") Высокая активность
         .calculating__divider
         .calculating__total
           .calculating__subtitle
