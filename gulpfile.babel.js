@@ -118,4 +118,6 @@ const assets = gulp.parallel([pug, styles, js, php, json]);
 const build = gulp.series(prepare, assets);
 const ggulp = gulp.parallel(build, sync, watch);
 
+gulp.task('build', build);
+
 exports.default = ggulp;
